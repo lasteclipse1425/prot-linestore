@@ -1,0 +1,255 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Каталог товаров</title>
+
+    <!-- Твой CSS SB Admin -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+
+<body class="sb-nav-fixed">
+
+    <!-- Верхняя панель -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand ps-3"
+           href="{% url 'onlinestore:product_list' %}">
+            Online Store
+        </a>
+        <a href="{% url 'onlinestore:base' %}"
+            class="btn btn-outline-light ms-2">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+                id="sidebarToggle" type="button">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="ms-auto me-3">
+            {% if user.is_authenticated %}
+                <span class="text-white me-3">
+                    Привет, {{ user.username }}!
+                </span>
+
+                <form action="{% url 'onlinestore:logout' %}"
+                      method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        Выйти
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'onlinestore:sign-in' %}"
+                   class="btn btn-primary btn-sm">
+                    Войти
+                </a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div id="layoutSidenav">
+
+        <!-- Боковое меню -->
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark"
+                 id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+
+                        <div class="sb-sidenav-menu-heading">
+                            Магазин
+                        </div>
+
+                        <a class="nav-link"
+                           href="{% url 'onlinestore:product_list' %}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            Каталог товаров
+                        </a>
+
+                        {% if user.is_authenticated %}
+                            <a class="nav-link"
+                               href="{% url 'onlinestore:profile' %}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                Мой профиль
+                            </a>
+                        {% endif %}
+
+                        <div class="sb-sidenav-menu-heading">
+                            Категории
+                        </div>
+
+                        {% for cat in categories %}
+                            <a class="nav-link"
+                               href="{% url 'onlinestore:product_list_by_category' cat.slug %}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                {{ cat.name }}
+                            </a>
+                        {% empty %}
+                            <div class="px-3 text-white-50">
+                                Категорий пока нет
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="sb-sidenav-footer">
+                    <div class="small">Вы вошли как:</div>
+                    {% if user.is_authenticated %}
+                        {{ user.username }}
+                    {% else %}
+                        Гость
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+
+        <!-- Основная область -->
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+
+                    <h1 class="mt-4">Каталог товаров</h1>
+
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">
+                            Главная / Каталог
+                        </li>
+                    </ol>
+
+                    <!-- Информация о каталоге -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-boxes me-1"></i>
+                            Наши товары
+                        </div>
+
+                        <div class="card-body">
+                            Добро пожаловать в наш интернет-магазин!
+                            Выберите товар, чтобы посмотреть подробности.
+                        </div>
+                    </div>
+
+                    <!-- Список товаров -->
+                    <h2 class="mb-3">Товары</h2>
+                    <div class="row">
+                    {% for product in products %}
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card h-100 shadow-sm">
+
+                                {% if product.image %}
+                                    <img
+                                        src="{{ product.image.url }}"
+                                        class="card-img-top"
+                                        alt="{{ product.name }}"
+                                        style="height: 220px; object-fit: contain; padding: 10px;"
+                                    >
+                                {% else %}
+                                    <div class="d-flex align-items-center justify-content-center bg-light"
+                                        style="height: 220px;">
+                                        <span class="text-muted">Нет фотографии</span>
+                                    </div>
+                                {% endif %}
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    {% if product.author %}
+                                        <p class="text-muted mb-2">
+                                            <i class="fas fa-user me-1"></i>
+                                            Автор: {{ product.author }}
+                                        </p>
+                                    {% endif %}
+                                    <p class="card-text">
+                                        {{ product.price }} сум
+                                    </p>
+
+                                    <a href="{% url 'onlinestore:product_detail' product.slug %}"
+                                    class="btn btn-primary">
+                                        Подробнее
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        {% comment %} {% for product in products %}
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card h-100 shadow-sm">
+
+                                    <div class="card-header">
+                                        <i class="fas fa-box me-1"></i>
+                                        Товар
+                                    </div>
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            {{ product.name }}
+                                        </h5>
+
+                                        <p class="card-text text-muted">
+                                            Цена:
+                                        </p>
+
+                                        <h4 class="text-success">
+                                            {{ product.price }} сум.
+                                        </h4>
+                                    </div>
+
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-primary"
+                                           href="{% url 'onlinestore:product_detail' product.slug %}">
+                                            Подробнее
+                                        </a>
+
+                                        <a href="{% url 'onlinestore:product_detail' product.slug %}"
+                                           class="btn btn-primary btn-sm">
+                                            Открыть
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="col-12">
+                                <div class="alert alert-warning">
+                                    Товары не найдены.
+                                </div>
+                            </div>
+                        {% endfor %} {% endcomment %}
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Подвал -->
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">
+                            © Online Store
+                        </div>
+                        <div>
+                            Каталог товаров
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>

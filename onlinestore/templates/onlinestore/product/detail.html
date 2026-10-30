@@ -1,0 +1,200 @@
+
+{% extends "onlinestore/components/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid px-4 py-4">
+
+    <!-- Заголовок и возврат в магазин -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="mt-2 mb-1">{{ product.name }}</h1>
+            <div class="text-muted">
+                Категория:
+                {% if product.category %}
+                    {{ product.category.name }}
+                {% else %}
+                    Не указана
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="{% url 'onlinestore:product_list' %}"
+           class="btn btn-outline-primary mt-2">
+            <i class="fas fa-arrow-left me-1"></i>
+            Назад в магазин
+        </a>
+    </div>
+
+    <div class="row">
+
+        <!-- Информация о товаре -->
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center p-4">
+
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}"
+                             class="img-fluid rounded"
+                             style="max-height: 420px; object-fit: contain;">
+                    {% else %}
+                        <div class="bg-light rounded d-flex align-items-center justify-content-center"
+                             style="height: 300px;">
+                            <span class="text-muted">
+                                <i class="fas fa-image fa-3x"></i>
+                                <br>
+                                Фото отсутствует
+                            </span>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Цена и сведения -->
+        <div class="col-lg-7 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Информация о товаре
+                </div>
+
+                <div class="card-body">
+
+                    <h2 class="text-primary mb-4">
+                        {{ product.price|default_if_none:"Цена не указана" }} сум
+                    </h2>
+
+                    {% if product.author %}
+                        <p>
+                            <strong>Автор:</strong>
+                            {{ product.author }}
+                        </p>
+                    {% endif %}
+
+                    <p>
+                        <strong>Категория:</strong>
+                        {% if product.category %}
+                            {{ product.category.name }}
+                        {% else %}
+                            Не указана
+                        {% endif %}
+                    </p>
+
+                    <p>
+                        <strong>Остаток:</strong>
+                        {{ product.stock }}
+                    </p>
+
+                    <p>
+                        <strong>Статус:</strong>
+                        {% if product.is_active %}
+                            <span class="badge bg-success">В наличии</span>
+                        {% else %}
+                            <span class="badge bg-danger">Нет в наличии</span>
+                        {% endif %}
+                    </p>
+
+                    <hr>
+
+                    <h5>Описание</h5>
+                    <p class="text-muted">
+                        {% if product.description %}
+                            {{ product.description|linebreaksbr }}
+                        {% else %}
+                            Описание отсутствует.
+                        {% endif %}
+                    </p>
+
+                    {% if product.file %}
+                        <a href="{{ product.file.url }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-outline-secondary mb-2">
+                            <i class="fas fa-book-open me-1"></i>
+                            Скачать книгу
+                        </a>
+                    {% endif %}
+
+                    {% if product.is_pdf and product.pdf_price is not None %}
+                        <p class="mt-3">
+                            <strong>Цена PDF-версии:</strong>
+                            {{ product.pdf_price }} сум
+                        </p>
+                    {% endif %}
+
+                    {% if product.is_active %}
+                        <a href="{% url 'onlinestore:order_create_product' product.slug %}"
+                           class="btn btn-primary mt-3">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Заказать товар
+                        </a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Отзывы -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <i class="fas fa-comments me-1"></i>
+            Отзывы покупателей
+        </div>
+
+        <div class="card-body">
+
+            {% if user.is_authenticated %}
+                <h5 class="mb-3">Оставить отзыв</h5>
+
+                <form method="post" class="mb-4">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-1"></i>
+                        Опубликовать отзыв
+                    </button>
+                </form>
+
+                <hr>
+            {% else %}
+                <div class="alert alert-info">
+                    Чтобы оставить отзыв,
+                    <a href="{% url 'onlinestore:login-page' %}">
+                        войдите в аккаунт
+                    </a>.
+                </div>
+            {% endif %}
+
+            {% for review in reviews %}
+                <div class="border-bottom py-3">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <strong>{{ review.user.username }}</strong>
+
+                        <span class="text-warning">
+                            <i class="fas fa-star"></i>
+                            {{ review.get_rating_display }}
+                        </span>
+                    </div>
+
+                    <small class="text-muted">
+                        {{ review.created_at|date:"d.m.Y H:i" }}
+                    </small>
+
+                    <p class="mt-2 mb-0">{{ review.text }}</p>
+                </div>
+            {% empty %}
+                <p class="text-muted mb-0">
+                    У этого товара пока нет отзывов. Будьте первым!
+                </p>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
