@@ -1,16 +1,6 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-
-# Virtual environment
-venv/
-myvenv/
-.env
-
 # Django
-*.log
 db.sqlite3
+db.sqlite3-journal
 media/
 
 # IDE
@@ -20,3 +10,6 @@ media/
 # OS
 .DS_Store
 Thumbs.db
+
+# Logs
+*.log
