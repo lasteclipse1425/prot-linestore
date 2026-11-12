@@ -37,7 +37,6 @@ myproj/                 Django project settings and main URLs
 onlinestore/            Store models, views, forms, API, and admin setup
 onlinestore/templates/  HTML pages
 onlinestore/static/     App CSS, JavaScript, and other static assets
-templates/              Shared project-level templates
 media/                  Uploaded product files and profile photos (local)
 manage.py               Django command-line utility
 requirements.txt        Python dependencies
@@ -111,10 +110,10 @@ These routes are defined in the project:
 | Method | Endpoint | Purpose |
 | --- | --- | --- |
 | `GET`, `POST` | `/api/products/` | List products or create a product |
-| `GET`, `PUT`, `PATCH`, `DELETE` | `/api/products/<id>/` | Read, update, or delete one product |
+| `GET` | `/api/products/<id>/` | Read one product |
 | `POST` | `/api/register/` | Register an account using a JSON request |
 
-The registration endpoint uses Django's CSRF protection. The API is a basic project feature and does not have a separate API guide yet.
+Product list and detail endpoints are publicly readable. Creating, updating, and deleting products is restricted to staff users. The registration endpoint uses Django's CSRF protection. The API is a basic project feature and does not have a separate API guide yet.
 
 ## What I Learned
 
