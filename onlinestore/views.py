@@ -1,11 +1,12 @@
 
 from django.contrib import messages
+from django.http import Http404
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_POST
-from rest_framework import generics
+from rest_framework import generics, permissions
 
 from .forms import (
     OrderCreateForm,
@@ -16,6 +17,15 @@ from .forms import (
 from .models import Category, Order, OrderItem, Product, Review, UserProfile
 from .serializers import ProductSerializer
 from .auth_views import sign_in as auth_sign_in
+
+
+class IsStaffOrReadOnly(permissions.BasePermission):
+    """Allow public reads and restrict API changes to staff users."""
+
+    def has_permission(self, request, view):
+        return request.method in permissions.SAFE_METHODS or (
+            request.user and request.user.is_authenticated and request.user.is_staff
+        )
 
 
 def base(request):
@@ -44,11 +54,13 @@ class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
+    permission_classes = [IsStaffOrReadOnly]
     queryset = Product.objects.select_related('category')
     serializer_class = ProductSerializer
 
 
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsStaffOrReadOnly]
     queryset = Product.objects.select_related('category')
     serializer_class = ProductSerializer
 
@@ -69,7 +81,7 @@ def edit_profile(request):
         if form.is_valid() and photo_form.is_valid():
             form.save()
             photo_form.save()
-            messages.success(request, '??????? ??????? ????????!')
+            messages.success(request, 'Профиль успешно обновлён!')
             return redirect('onlinestore:profile')
     else:
         form = ProfileUpdateForm(instance=request.user)
@@ -95,7 +107,7 @@ def profile(request):
 
 
 def product_detail(request, slug):
-    """?????????? ????????? ???????? ?????????? ??????."""
+    """Display an active product and its reviews."""
     product = get_object_or_404(Product.objects.select_related('category'), slug=slug, is_active=True)
     reviews = product.reviews.all()
 
@@ -120,10 +132,7 @@ def product_detail(request, slug):
 def order_create(request, product_slug=None):
     product = get_object_or_404(Product, slug=product_slug) if product_slug else None
 
-    """
-    ??????? ?????. ??? ???????? ??????????????? ?????????? ??????
-    ?? ???? ?????????? ????? (?????????? ????? GET/POST) ??? ?? ??????.
-    """
+    """Create an order for the selected product, if one was provided."""
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
 
@@ -133,14 +142,14 @@ def order_create(request, product_slug=None):
                 order.product = product
             if request.user.is_authenticated:
                 order.user = request.user
-            order.save()
-
-            quantity = int(request.POST.get('quantity', 1))
+            quantity = form.cleaned_data['quantity']
             order.quantity = quantity
 
             if product is not None and product.is_pdf() and product.pdf_price is None:
-                messages.error(request, '???? PDF-?????? ?? ???????.')
+                messages.error(request, 'Для PDF-версии не указана цена.')
                 return redirect('onlinestore:product_detail', slug=product.slug)
+
+            order.save()
 
             if product is not None:
                 order_item = OrderItem.objects.create(
@@ -152,6 +161,7 @@ def order_create(request, product_slug=None):
                 order.total_price = order_item.get_cost()
                 order.save()
 
+            request.session['last_order_id'] = order.id
             return redirect('onlinestore:order_created', order_id=order.id)
     else:
         form = OrderCreateForm(initial={'quantity': 1})
@@ -162,4 +172,9 @@ def order_create(request, product_slug=None):
 
 def order_created(request, order_id):
     order = get_object_or_404(Order, id=order_id)
+    if order.user_id:
+        if not request.user.is_authenticated or order.user_id != request.user.id:
+            raise Http404
+    elif request.session.get('last_order_id') != order.id:
+        raise Http404
     return render(request, template_name='onlinestore/order/created.html', context={'order': order})

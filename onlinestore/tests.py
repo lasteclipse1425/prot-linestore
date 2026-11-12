@@ -95,3 +95,45 @@ class AuthenticationFlowTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context['form'].non_field_errors())
         self.assertNotIn('_auth_user_id', self.client.session)
+
+
+class ProductApiPermissionTests(TestCase):
+    def setUp(self):
+        from .models import Category, Product
+
+        self.category = Category.objects.create(name='Books', slug='books')
+        self.product = Product.objects.create(
+            category=self.category,
+            name='Test book',
+            slug='test-book',
+            price='10.00',
+            stock=3,
+        )
+
+    def test_anonymous_user_can_read_products(self):
+        response = self.client.get('/api/products/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_anonymous_user_cannot_create_products(self):
+        response = self.client.post('/api/products/', {
+            'category': self.category.pk,
+            'name': 'Another book',
+            'slug': 'another-book',
+            'price': '12.00',
+            'stock': 2,
+        })
+        self.assertEqual(response.status_code, 403)
+
+    def test_staff_user_can_create_products(self):
+        staff = get_user_model().objects.create_user(
+            username='store_admin', password='SafePassword928!', is_staff=True,
+        )
+        self.client.force_login(staff)
+        response = self.client.post('/api/products/', {
+            'category': self.category.pk,
+            'name': 'Another book',
+            'slug': 'another-book',
+            'price': '12.00',
+            'stock': 2,
+        })
+        self.assertEqual(response.status_code, 201)
