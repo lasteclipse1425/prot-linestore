@@ -13,3 +13,20 @@ Thumbs.db
 
 # Logs
 *.log
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Test and tool caches
+.pytest_cache/
+.coverage
+htmlcov/
