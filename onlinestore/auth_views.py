@@ -7,6 +7,7 @@ from django.db import IntegrityError, transaction
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.utils.http import url_has_allowed_host_and_scheme
+from django.utils.translation import gettext as _
 
 from .forms import RegisterForm
 
@@ -32,11 +33,11 @@ def register(request):
         except IntegrityError:
             form.add_error(
                 None,
-                'Не удалось создать аккаунт: логин уже используется. Проверьте данные и повторите попытку.',
+                _('Could not create the account. This username may already be in use.'),
             )
         else:
             login(request, user)
-            messages.success(request, f'Аккаунт {user.username} успешно создан!')
+            messages.success(request, _('Account %(username)s was created successfully.') % {'username': user.username})
             return redirect('onlinestore:profile')
 
     return render(request, 'user/register.html', {'form': form})
@@ -103,13 +104,13 @@ def sign_in(request):
     form.fields['username'].widget.attrs.update({
         'class': 'form-control',
         'id': 'inputUsername',
-        'placeholder': 'Логин',
+        'placeholder': _('Username'),
         'autocomplete': 'username',
     })
     form.fields['password'].widget.attrs.update({
         'class': 'form-control',
         'id': 'inputPassword',
-        'placeholder': 'Пароль',
+        'placeholder': _('Password'),
         'autocomplete': 'current-password',
     })
     if request.method == 'POST' and form.is_valid():

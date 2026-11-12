@@ -1,0 +1,391 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: online-store\n"
+"Language: ru\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+msgid "Online Store"
+msgstr "Интернет-магазин"
+
+msgid "Useful finds for everyday life."
+msgstr "Полезные товары на каждый день."
+
+msgid "Dismiss notification"
+msgstr "Закрыть уведомление"
+
+msgid "Everyday essentials, selected for you."
+msgstr "Всё нужное для повседневной жизни."
+
+msgid "Explore useful products for work, home, and everything in between."
+msgstr "Выбирайте товары для дома, работы и повседневных дел."
+
+msgid "Browse products"
+msgstr "Смотреть товары"
+
+msgid "Skip to main content"
+msgstr "Перейти к основному содержимому"
+
+msgid "Main navigation"
+msgstr "Главная навигация"
+
+msgid "Open menu"
+msgstr "Открыть меню"
+
+msgid "Catalog"
+msgstr "Каталог"
+
+msgid "My account"
+msgstr "Личный кабинет"
+
+msgid "Sign out"
+msgstr "Выйти"
+
+msgid "Sign in"
+msgstr "Войти"
+
+msgid "sign in"
+msgstr "войдите"
+
+msgid "Create account"
+msgstr "Создать аккаунт"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Switch to dark mode"
+msgstr "Включить тёмную тему"
+
+msgid "Switch to light mode"
+msgstr "Включить светлую тему"
+
+msgid "Dark mode"
+msgstr "Тёмная тема"
+
+msgid "Light mode"
+msgstr "Светлая тема"
+
+msgid "Back to catalog"
+msgstr "Вернуться в каталог"
+
+msgid "Online Store · Catalog"
+msgstr "Интернет-магазин · Каталог"
+
+msgid "Find what you need."
+msgstr "Найдите то, что вам нужно."
+
+msgid "Product selection"
+msgstr "Ассортимент"
+
+msgid "All products"
+msgstr "Все товары"
+
+msgid "Search products"
+msgstr "Поиск товаров"
+
+msgid "Search the catalog"
+msgstr "Поиск по каталогу"
+
+msgid "Sort by"
+msgstr "Сортировать"
+
+msgid "Newest first"
+msgstr "Сначала новые"
+
+msgid "Price: low to high"
+msgstr "Сначала дешевле"
+
+msgid "Price: high to low"
+msgstr "Сначала дороже"
+
+msgid "Apply filters"
+msgstr "Применить"
+
+msgid "No products matched your search."
+msgstr "По вашему запросу ничего не найдено."
+
+msgid "Try a different search term or clear the search."
+msgstr "Измените запрос или очистите поле поиска."
+
+msgid "Clear search"
+msgstr "Очистить поиск"
+
+msgid "Catalog pages"
+msgstr "Страницы каталога"
+
+msgid "Previous"
+msgstr "Назад"
+
+msgid "Page %(current)s of %(total)s"
+msgstr "Страница %(current)s из %(total)s"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "Browse the available items in our store."
+msgstr "Посмотрите товары, доступные в магазине."
+
+msgid "Product categories"
+msgstr "Категории товаров"
+
+msgid "View details for %(product_name)s"
+msgstr "Подробнее о товаре «%(product_name)s»"
+
+msgid "Image of %(product_name)s"
+msgstr "Изображение товара «%(product_name)s»"
+
+msgid "Product"
+msgstr "Товар"
+
+msgid "UZS"
+msgstr "сум"
+
+msgid "View details"
+msgstr "Подробнее"
+
+msgid "No products here yet"
+msgstr "Здесь пока нет товаров"
+
+msgid "Try browsing the full catalog instead."
+msgstr "Попробуйте посмотреть весь каталог."
+
+msgid "Digital download"
+msgstr "Цифровая версия"
+
+msgid "Available to order"
+msgstr "Доступен для заказа"
+
+msgid "Currently unavailable"
+msgstr "Временно недоступен"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "No description is available yet."
+msgstr "Описание пока отсутствует."
+
+msgid "Order digital item"
+msgstr "Заказать цифровую версию"
+
+msgid "Order now"
+msgstr "Заказать"
+
+msgid "The download link is available after payment."
+msgstr "Ссылка для скачивания будет доступна после оплаты."
+
+msgid "Customer feedback"
+msgstr "Отзывы покупателей"
+
+msgid "Reviews"
+msgstr "Отзывы"
+
+msgid "Submit review"
+msgstr "Отправить отзыв"
+
+msgid "To leave a review, please"
+msgstr "Чтобы оставить отзыв,"
+
+msgid "Rating: %(rating)s out of 5"
+msgstr "Оценка: %(rating)s из 5"
+
+msgid "No reviews yet"
+msgstr "Отзывов пока нет"
+
+msgid "Be the first to share your feedback about this product."
+msgstr "Оставьте первый отзыв об этом товаре."
+
+msgid "Account"
+msgstr "Аккаунт"
+
+msgid "User profile"
+msgstr "Профиль пользователя"
+
+msgid "Profile photo"
+msgstr "Фото профиля"
+
+msgid "Email not provided"
+msgstr "Email не указан"
+
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+msgid "Order history"
+msgstr "История заказов"
+
+msgid "Order #%(order_id)s"
+msgstr "Заказ №%(order_id)s"
+
+msgid "Product removed"
+msgstr "Товар удалён"
+
+msgid "No orders yet"
+msgstr "Заказов пока нет"
+
+msgid "Your orders will appear here after you place one."
+msgstr "Оформленные заказы будут отображаться здесь."
+
+msgid "Checkout"
+msgstr "Оформление заказа"
+
+msgid "Back to product"
+msgstr "Вернуться к товару"
+
+msgid "Almost done"
+msgstr "Остался последний шаг"
+
+msgid "Online payment is not available yet. Your order will be saved for follow-up."
+msgstr "Оплата на сайте пока недоступна. Заказ будет сохранён для дальнейшей обработки."
+
+msgid "Place order"
+msgstr "Подтвердить заказ"
+
+msgid "Order received"
+msgstr "Заказ принят"
+
+msgid "Order saved"
+msgstr "Заказ сохранён"
+
+msgid "Thank you. We have saved your order. Online payment and delivery are not available yet."
+msgstr "Спасибо! Мы сохранили ваш заказ. Оплата и доставка на сайте пока недоступны."
+
+msgid "Order"
+msgstr "Заказ"
+
+msgid "Quantity"
+msgstr "Количество"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Welcome back"
+msgstr "С возвращением"
+
+msgid "Sign in to your account"
+msgstr "Войдите в аккаунт"
+
+msgid "Sign in to manage your profile and reviews."
+msgstr "Войдите, чтобы управлять профилем и отзывами."
+
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+msgid "Join us"
+msgstr "Добро пожаловать"
+
+msgid "Enter your details to create an account."
+msgstr "Заполните данные для создания аккаунта."
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgid "Current profile photo"
+msgstr "Текущее фото профиля"
+
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Username"
+msgstr "Логин"
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Enter username"
+msgstr "Введите логин"
+
+msgid "Enter first name"
+msgstr "Введите имя"
+
+msgid "Enter last name"
+msgstr "Введите фамилию"
+
+msgid "Enter email"
+msgstr "Введите email"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Confirm password"
+msgstr "Повторите пароль"
+
+msgid "An account with this username already exists."
+msgstr "Пользователь с таким логином уже существует."
+
+msgid "An account with this email is already registered."
+msgstr "Пользователь с таким email уже зарегистрирован."
+
+msgid "Password must be at least 8 characters long."
+msgstr "Пароль должен содержать не менее 8 символов."
+
+msgid "Password must include at least one uppercase letter."
+msgstr "Пароль должен содержать хотя бы одну заглавную букву."
+
+msgid "Password must include at least one number."
+msgstr "Пароль должен содержать хотя бы одну цифру."
+
+msgid "Passwords do not match."
+msgstr "Пароли не совпадают."
+
+msgid "Share your feedback about this product."
+msgstr "Поделитесь впечатлением об этом товаре."
+
+msgid "Rating"
+msgstr "Оценка"
+
+msgid "Your review"
+msgstr "Ваш отзыв"
+
+msgid "Delivery address"
+msgstr "Адрес доставки"
+
+msgid "A price has not been set for the digital download."
+msgstr "Для цифровой версии не указана цена."
+
+msgid "You have already reviewed this product."
+msgstr "Вы уже оставили отзыв об этом товаре."
+
+msgid "This product is currently out of stock."
+msgstr "Этого товара сейчас нет в наличии."
+
+msgid "Only %(quantity)s unit is currently in stock."
+msgid_plural "Only %(quantity)s units are currently in stock."
+msgstr[0] "В наличии только %(quantity)s шт."
+msgstr[1] "В наличии только %(quantity)s шт."
+msgstr[2] "В наличии только %(quantity)s шт."
+
+msgid "Your profile has been updated."
+msgstr "Профиль обновлён."
+
+msgid "Could not create the account. This username may already be in use."
+msgstr "Не удалось создать аккаунт. Возможно, этот логин уже занят."
+
+msgid "Account %(username)s was created successfully."
+msgstr "Аккаунт %(username)s успешно создан."
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Paid"
+msgstr "Оплачен"
+
+msgid "Shipped"
+msgstr "Отправлен"
+
+msgid "Completed"
+msgstr "Завершён"
+
+msgid "Canceled"
+msgstr "Отменён"

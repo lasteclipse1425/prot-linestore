@@ -1,0 +1,390 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: online-store\n"
+"Language: uz\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Online Store"
+msgstr "Onlayn do‘kon"
+
+msgid "Useful finds for everyday life."
+msgstr "Kundalik hayot uchun foydali mahsulotlar."
+
+msgid "Dismiss notification"
+msgstr "Bildirishnomani yopish"
+
+msgid "Everyday essentials, selected for you."
+msgstr "Kundalik ehtiyojlaringiz uchun tanlangan mahsulotlar."
+
+msgid "Explore useful products for work, home, and everything in between."
+msgstr "Ish, uy va kundalik hayot uchun kerakli mahsulotlarni ko‘rib chiqing."
+
+msgid "Browse products"
+msgstr "Mahsulotlarni ko‘rish"
+
+msgid "Skip to main content"
+msgstr "Asosiy mazmunga o‘tish"
+
+msgid "Main navigation"
+msgstr "Asosiy navigatsiya"
+
+msgid "Open menu"
+msgstr "Menyuni ochish"
+
+msgid "Catalog"
+msgstr "Katalog"
+
+msgid "My account"
+msgstr "Shaxsiy kabinet"
+
+msgid "Sign out"
+msgstr "Chiqish"
+
+msgid "Sign in"
+msgstr "Kirish"
+
+msgid "sign in"
+msgstr "tizimga kiring"
+
+msgid "Create account"
+msgstr "Hisob yaratish"
+
+msgid "Language"
+msgstr "Til"
+
+msgid "Apply"
+msgstr "Qo‘llash"
+
+msgid "Switch to dark mode"
+msgstr "Qorong‘i rejimga o‘tish"
+
+msgid "Switch to light mode"
+msgstr "Yorug‘ rejimga o‘tish"
+
+msgid "Dark mode"
+msgstr "Qorong‘i rejim"
+
+msgid "Light mode"
+msgstr "Yorug‘ rejim"
+
+msgid "Back to catalog"
+msgstr "Katalogga qaytish"
+
+msgid "Online Store · Catalog"
+msgstr "Onlayn do‘kon · Katalog"
+
+msgid "Find what you need."
+msgstr "Kerakli mahsulotni toping."
+
+msgid "Product selection"
+msgstr "Mahsulotlar tanlovi"
+
+msgid "All products"
+msgstr "Barcha mahsulotlar"
+
+msgid "Search products"
+msgstr "Mahsulotlarni qidirish"
+
+msgid "Search the catalog"
+msgstr "Katalogdan qidirish"
+
+msgid "Sort by"
+msgstr "Saralash"
+
+msgid "Newest first"
+msgstr "Avval yangilari"
+
+msgid "Price: low to high"
+msgstr "Avval arzonlari"
+
+msgid "Price: high to low"
+msgstr "Avval qimmatlari"
+
+msgid "Apply filters"
+msgstr "Qo‘llash"
+
+msgid "No products matched your search."
+msgstr "Qidiruvingiz bo‘yicha mahsulot topilmadi."
+
+msgid "Try a different search term or clear the search."
+msgstr "Boshqa so‘z bilan qidiring yoki qidiruvni tozalang."
+
+msgid "Clear search"
+msgstr "Qidiruvni tozalash"
+
+msgid "Catalog pages"
+msgstr "Katalog sahifalari"
+
+msgid "Previous"
+msgstr "Oldingi"
+
+msgid "Page %(current)s of %(total)s"
+msgstr "%(total)s sahifadan %(current)s-sahifa"
+
+msgid "Next"
+msgstr "Keyingi"
+
+msgid "Browse the available items in our store."
+msgstr "Do‘konimizdagi mavjud mahsulotlarni ko‘rib chiqing."
+
+msgid "Product categories"
+msgstr "Mahsulot toifalari"
+
+msgid "View details for %(product_name)s"
+msgstr "%(product_name)s tafsilotlarini ko‘rish"
+
+msgid "Image of %(product_name)s"
+msgstr "%(product_name)s rasmi"
+
+msgid "Product"
+msgstr "Mahsulot"
+
+msgid "UZS"
+msgstr "so‘m"
+
+msgid "View details"
+msgstr "Batafsil"
+
+msgid "No products here yet"
+msgstr "Bu yerda hozircha mahsulot yo‘q"
+
+msgid "Try browsing the full catalog instead."
+msgstr "Barcha mahsulotlar katalogini ko‘rib chiqing."
+
+msgid "Digital download"
+msgstr "Raqamli nusxa"
+
+msgid "Available to order"
+msgstr "Buyurtma qilish mumkin"
+
+msgid "Currently unavailable"
+msgstr "Hozirda mavjud emas"
+
+msgid "Description"
+msgstr "Tavsif"
+
+msgid "No description is available yet."
+msgstr "Hozircha tavsif kiritilmagan."
+
+msgid "Order digital item"
+msgstr "Raqamli mahsulotga buyurtma berish"
+
+msgid "Order now"
+msgstr "Buyurtma berish"
+
+msgid "The download link is available after payment."
+msgstr "Yuklab olish havolasi to‘lovdan so‘ng taqdim etiladi."
+
+msgid "Customer feedback"
+msgstr "Mijozlar fikri"
+
+msgid "Reviews"
+msgstr "Sharhlar"
+
+msgid "Submit review"
+msgstr "Sharh qoldirish"
+
+msgid "To leave a review, please"
+msgstr "Sharh qoldirish uchun"
+
+msgid "Rating: %(rating)s out of 5"
+msgstr "Baho: 5 dan %(rating)s"
+
+msgid "No reviews yet"
+msgstr "Hozircha sharhlar yo‘q"
+
+msgid "Be the first to share your feedback about this product."
+msgstr "Bu mahsulot haqida birinchi bo‘lib fikringizni yozing."
+
+msgid "Account"
+msgstr "Hisob"
+
+msgid "User profile"
+msgstr "Foydalanuvchi profili"
+
+msgid "Profile photo"
+msgstr "Profil rasmi"
+
+msgid "Email not provided"
+msgstr "Email ko‘rsatilmagan"
+
+msgid "Edit profile"
+msgstr "Profilni tahrirlash"
+
+msgid "Order history"
+msgstr "Buyurtmalar tarixi"
+
+msgid "Order #%(order_id)s"
+msgstr "Buyurtma №%(order_id)s"
+
+msgid "Product removed"
+msgstr "Mahsulot o‘chirildi"
+
+msgid "No orders yet"
+msgstr "Hozircha buyurtmalar yo‘q"
+
+msgid "Your orders will appear here after you place one."
+msgstr "Buyurtma berganingizdan so‘ng, u shu yerda ko‘rinadi."
+
+msgid "Checkout"
+msgstr "Buyurtmani rasmiylashtirish"
+
+msgid "Back to product"
+msgstr "Mahsulotga qaytish"
+
+msgid "Almost done"
+msgstr "Yakunlashga oz qoldi"
+
+msgid "Online payment is not available yet. Your order will be saved for follow-up."
+msgstr "Onlayn to‘lov hozircha mavjud emas. Buyurtmangiz keyingi ishlov uchun saqlanadi."
+
+msgid "Place order"
+msgstr "Buyurtmani tasdiqlash"
+
+msgid "Order received"
+msgstr "Buyurtma qabul qilindi"
+
+msgid "Order saved"
+msgstr "Buyurtma saqlandi"
+
+msgid "Thank you. We have saved your order. Online payment and delivery are not available yet."
+msgstr "Rahmat. Buyurtmangiz saqlandi. Onlayn to‘lov va yetkazib berish hozircha mavjud emas."
+
+msgid "Order"
+msgstr "Buyurtma"
+
+msgid "Quantity"
+msgstr "Miqdor"
+
+msgid "Total"
+msgstr "Jami"
+
+msgid "Welcome back"
+msgstr "Xush kelibsiz"
+
+msgid "Sign in to your account"
+msgstr "Hisobingizga kiring"
+
+msgid "Sign in to manage your profile and reviews."
+msgstr "Profil va sharhlaringizni boshqarish uchun tizimga kiring."
+
+msgid "Don't have an account?"
+msgstr "Hisobingiz yo‘qmi?"
+
+msgid "Join us"
+msgstr "Bizga qo‘shiling"
+
+msgid "Enter your details to create an account."
+msgstr "Hisob yaratish uchun ma’lumotlaringizni kiriting."
+
+msgid "Already have an account?"
+msgstr "Hisobingiz bormi?"
+
+msgid "Current profile photo"
+msgstr "Joriy profil rasmi"
+
+msgid "Save changes"
+msgstr "O‘zgarishlarni saqlash"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Username"
+msgstr "Foydalanuvchi nomi"
+
+msgid "First name"
+msgstr "Ism"
+
+msgid "Last name"
+msgstr "Familiya"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Enter username"
+msgstr "Foydalanuvchi nomini kiriting"
+
+msgid "Enter first name"
+msgstr "Ismingizni kiriting"
+
+msgid "Enter last name"
+msgstr "Familiyangizni kiriting"
+
+msgid "Enter email"
+msgstr "Email manzilingizni kiriting"
+
+msgid "Password"
+msgstr "Parol"
+
+msgid "Confirm password"
+msgstr "Parolni takrorlang"
+
+msgid "An account with this username already exists."
+msgstr "Bu foydalanuvchi nomi allaqachon band."
+
+msgid "An account with this email is already registered."
+msgstr "Bu email manzili bilan hisob allaqachon ro‘yxatdan o‘tgan."
+
+msgid "Password must be at least 8 characters long."
+msgstr "Parol kamida 8 ta belgidan iborat bo‘lishi kerak."
+
+msgid "Password must include at least one uppercase letter."
+msgstr "Parolda kamida bitta bosh harf bo‘lishi kerak."
+
+msgid "Password must include at least one number."
+msgstr "Parolda kamida bitta raqam bo‘lishi kerak."
+
+msgid "Passwords do not match."
+msgstr "Parollar mos kelmadi."
+
+msgid "Share your feedback about this product."
+msgstr "Mahsulot haqidagi fikringizni yozing."
+
+msgid "Rating"
+msgstr "Baho"
+
+msgid "Your review"
+msgstr "Sharhingiz"
+
+msgid "Delivery address"
+msgstr "Yetkazib berish manzili"
+
+msgid "A price has not been set for the digital download."
+msgstr "Raqamli mahsulot narxi belgilanmagan."
+
+msgid "You have already reviewed this product."
+msgstr "Bu mahsulotga allaqachon sharh qoldirgansiz."
+
+msgid "This product is currently out of stock."
+msgstr "Bu mahsulot hozirda omborda yo‘q."
+
+msgid "Only %(quantity)s unit is currently in stock."
+msgid_plural "Only %(quantity)s units are currently in stock."
+msgstr[0] "Omborda hozir faqat %(quantity)s dona bor."
+msgstr[1] "Omborda hozir faqat %(quantity)s dona bor."
+
+msgid "Your profile has been updated."
+msgstr "Profilingiz yangilandi."
+
+msgid "Could not create the account. This username may already be in use."
+msgstr "Hisob yaratilmadi. Bu foydalanuvchi nomi band bo‘lishi mumkin."
+
+msgid "Account %(username)s was created successfully."
+msgstr "%(username)s hisobi muvaffaqiyatli yaratildi."
+
+msgid "New"
+msgstr "Yangi"
+
+msgid "Paid"
+msgstr "To‘langan"
+
+msgid "Shipped"
+msgstr "Jo‘natilgan"
+
+msgid "Completed"
+msgstr "Yakunlangan"
+
+msgid "Canceled"
+msgstr "Bekor qilingan"

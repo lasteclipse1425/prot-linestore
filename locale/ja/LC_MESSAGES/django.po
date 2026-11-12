@@ -1,0 +1,389 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: online-store\n"
+"Language: ja\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Online Store"
+msgstr "オンラインストア"
+
+msgid "Useful finds for everyday life."
+msgstr "毎日の暮らしに役立つ商品をお届けします。"
+
+msgid "Dismiss notification"
+msgstr "通知を閉じる"
+
+msgid "Everyday essentials, selected for you."
+msgstr "毎日の暮らしにぴったりの商品を。"
+
+msgid "Explore useful products for work, home, and everything in between."
+msgstr "仕事やご自宅など、さまざまなシーンで役立つ商品をご覧ください。"
+
+msgid "Browse products"
+msgstr "商品を見る"
+
+msgid "Skip to main content"
+msgstr "メインコンテンツへ移動"
+
+msgid "Main navigation"
+msgstr "メインナビゲーション"
+
+msgid "Open menu"
+msgstr "メニューを開く"
+
+msgid "Catalog"
+msgstr "商品一覧"
+
+msgid "My account"
+msgstr "マイアカウント"
+
+msgid "Sign out"
+msgstr "ログアウト"
+
+msgid "Sign in"
+msgstr "ログイン"
+
+msgid "sign in"
+msgstr "ログインして"
+
+msgid "Create account"
+msgstr "アカウントを作成"
+
+msgid "Language"
+msgstr "言語"
+
+msgid "Apply"
+msgstr "適用"
+
+msgid "Switch to dark mode"
+msgstr "ダークモードに切り替え"
+
+msgid "Switch to light mode"
+msgstr "ライトモードに切り替え"
+
+msgid "Dark mode"
+msgstr "ダークモード"
+
+msgid "Light mode"
+msgstr "ライトモード"
+
+msgid "Back to catalog"
+msgstr "商品一覧に戻る"
+
+msgid "Online Store · Catalog"
+msgstr "オンラインストア · 商品一覧"
+
+msgid "Find what you need."
+msgstr "お探しの商品を見つけましょう。"
+
+msgid "Product selection"
+msgstr "商品ラインアップ"
+
+msgid "All products"
+msgstr "すべての商品"
+
+msgid "Search products"
+msgstr "商品を検索"
+
+msgid "Search the catalog"
+msgstr "カタログを検索"
+
+msgid "Sort by"
+msgstr "並べ替え"
+
+msgid "Newest first"
+msgstr "新着順"
+
+msgid "Price: low to high"
+msgstr "価格の安い順"
+
+msgid "Price: high to low"
+msgstr "価格の高い順"
+
+msgid "Apply filters"
+msgstr "適用"
+
+msgid "No products matched your search."
+msgstr "検索条件に一致する商品はありません。"
+
+msgid "Try a different search term or clear the search."
+msgstr "検索語を変えるか、検索をクリアしてください。"
+
+msgid "Clear search"
+msgstr "検索をクリア"
+
+msgid "Catalog pages"
+msgstr "カタログページ"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Page %(current)s of %(total)s"
+msgstr "%(total)sページ中 %(current)sページ"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Browse the available items in our store."
+msgstr "現在ご購入いただける商品をご覧ください。"
+
+msgid "Product categories"
+msgstr "商品カテゴリー"
+
+msgid "View details for %(product_name)s"
+msgstr "%(product_name)sの詳細を見る"
+
+msgid "Image of %(product_name)s"
+msgstr "%(product_name)sの商品画像"
+
+msgid "Product"
+msgstr "商品"
+
+msgid "UZS"
+msgstr "UZS"
+
+msgid "View details"
+msgstr "詳細を見る"
+
+msgid "No products here yet"
+msgstr "このカテゴリーにはまだ商品がありません"
+
+msgid "Try browsing the full catalog instead."
+msgstr "商品一覧全体をご覧ください。"
+
+msgid "Digital download"
+msgstr "デジタル版"
+
+msgid "Available to order"
+msgstr "注文できます"
+
+msgid "Currently unavailable"
+msgstr "現在ご利用いただけません"
+
+msgid "Description"
+msgstr "商品説明"
+
+msgid "No description is available yet."
+msgstr "商品説明はまだありません。"
+
+msgid "Order digital item"
+msgstr "デジタル商品を注文"
+
+msgid "Order now"
+msgstr "注文する"
+
+msgid "The download link is available after payment."
+msgstr "ダウンロードリンクはお支払い後にご利用いただけます。"
+
+msgid "Customer feedback"
+msgstr "お客様の声"
+
+msgid "Reviews"
+msgstr "レビュー"
+
+msgid "Submit review"
+msgstr "レビューを投稿"
+
+msgid "To leave a review, please"
+msgstr "レビューを投稿するには"
+
+msgid "Rating: %(rating)s out of 5"
+msgstr "評価：5点中%(rating)s点"
+
+msgid "No reviews yet"
+msgstr "レビューはまだありません"
+
+msgid "Be the first to share your feedback about this product."
+msgstr "この商品について、ぜひ最初のレビューをお寄せください。"
+
+msgid "Account"
+msgstr "アカウント"
+
+msgid "User profile"
+msgstr "ユーザープロフィール"
+
+msgid "Profile photo"
+msgstr "プロフィール写真"
+
+msgid "Email not provided"
+msgstr "メールアドレスは未登録です"
+
+msgid "Edit profile"
+msgstr "プロフィールを編集"
+
+msgid "Order history"
+msgstr "注文履歴"
+
+msgid "Order #%(order_id)s"
+msgstr "注文番号 %(order_id)s"
+
+msgid "Product removed"
+msgstr "商品は削除されました"
+
+msgid "No orders yet"
+msgstr "注文はまだありません"
+
+msgid "Your orders will appear here after you place one."
+msgstr "ご注文いただくと、こちらに表示されます。"
+
+msgid "Checkout"
+msgstr "ご注文手続き"
+
+msgid "Back to product"
+msgstr "商品詳細に戻る"
+
+msgid "Almost done"
+msgstr "あと少しです"
+
+msgid "Online payment is not available yet. Your order will be saved for follow-up."
+msgstr "オンライン決済は現在ご利用いただけません。ご注文内容は保存されます。"
+
+msgid "Place order"
+msgstr "注文を確定"
+
+msgid "Order received"
+msgstr "ご注文を受け付けました"
+
+msgid "Order saved"
+msgstr "注文を保存しました"
+
+msgid "Thank you. We have saved your order. Online payment and delivery are not available yet."
+msgstr "ありがとうございます。ご注文を保存しました。オンライン決済と配送は現在ご利用いただけません。"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "Quantity"
+msgstr "数量"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Welcome back"
+msgstr "おかえりなさい"
+
+msgid "Sign in to your account"
+msgstr "アカウントにログイン"
+
+msgid "Sign in to manage your profile and reviews."
+msgstr "ログインすると、プロフィールやレビューを管理できます。"
+
+msgid "Don't have an account?"
+msgstr "アカウントをお持ちでない場合"
+
+msgid "Join us"
+msgstr "新規登録"
+
+msgid "Enter your details to create an account."
+msgstr "アカウントを作成するため、必要事項を入力してください。"
+
+msgid "Already have an account?"
+msgstr "すでにアカウントをお持ちですか？"
+
+msgid "Current profile photo"
+msgstr "現在のプロフィール写真"
+
+msgid "Save changes"
+msgstr "変更を保存"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "First name"
+msgstr "名"
+
+msgid "Last name"
+msgstr "姓"
+
+msgid "Email"
+msgstr "メールアドレス"
+
+msgid "Enter username"
+msgstr "ユーザー名を入力"
+
+msgid "Enter first name"
+msgstr "名を入力"
+
+msgid "Enter last name"
+msgstr "姓を入力"
+
+msgid "Enter email"
+msgstr "メールアドレスを入力"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Confirm password"
+msgstr "パスワードを再入力"
+
+msgid "An account with this username already exists."
+msgstr "このユーザー名はすでに使用されています。"
+
+msgid "An account with this email is already registered."
+msgstr "このメールアドレスはすでに登録されています。"
+
+msgid "Password must be at least 8 characters long."
+msgstr "パスワードは8文字以上で入力してください。"
+
+msgid "Password must include at least one uppercase letter."
+msgstr "パスワードには大文字を1文字以上含めてください。"
+
+msgid "Password must include at least one number."
+msgstr "パスワードには数字を1文字以上含めてください。"
+
+msgid "Passwords do not match."
+msgstr "パスワードが一致しません。"
+
+msgid "Share your feedback about this product."
+msgstr "この商品についての感想をお聞かせください。"
+
+msgid "Rating"
+msgstr "評価"
+
+msgid "Your review"
+msgstr "レビュー内容"
+
+msgid "Delivery address"
+msgstr "配送先住所"
+
+msgid "A price has not been set for the digital download."
+msgstr "デジタル版の価格が設定されていません。"
+
+msgid "You have already reviewed this product."
+msgstr "この商品にはすでにレビューを投稿済みです。"
+
+msgid "This product is currently out of stock."
+msgstr "この商品は現在在庫切れです。"
+
+msgid "Only %(quantity)s unit is currently in stock."
+msgid_plural "Only %(quantity)s units are currently in stock."
+msgstr[0] "現在の在庫は%(quantity)s点です。"
+
+msgid "Your profile has been updated."
+msgstr "プロフィールを更新しました。"
+
+msgid "Could not create the account. This username may already be in use."
+msgstr "アカウントを作成できませんでした。このユーザー名はすでに使用されている可能性があります。"
+
+msgid "Account %(username)s was created successfully."
+msgstr "アカウント %(username)s を作成しました。"
+
+msgid "New"
+msgstr "新規"
+
+msgid "Paid"
+msgstr "支払い済み"
+
+msgid "Shipped"
+msgstr "発送済み"
+
+msgid "Completed"
+msgstr "完了"
+
+msgid "Canceled"
+msgstr "キャンセル済み"

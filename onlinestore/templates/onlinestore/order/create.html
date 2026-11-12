@@ -1,29 +1,33 @@
-{% extends "onlinestore/components/base.html" %}
-
+{% extends 'onlinestore/components/base.html' %}
+{% load i18n l10n %}
+{% block title %}{% trans "Checkout" %}{% endblock %}
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4 p-md-5">
-                    <h1 class="mb-3">Оформление заказа</h1>
-
-                    <div class="mb-4 p-3 bg-light rounded">
-                        <h4 class="mb-1">{{ product.name }}</h4>
-                        <p class="mb-0 text-muted">
-                            Цена: {{ product.selling_price|default:product.price }} сум
-                        </p>
-                    </div>
-
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary mt-3">
-                            Подтвердить заказ
-                        </button>
-                    </form>
+<div class="container py-4 py-lg-5">
+    <a href="{% url 'onlinestore:product_detail' product.slug %}" class="back-link">← {% trans "Back to product" %}</a>
+    <div class="row justify-content-center mt-3">
+        <div class="col-12 col-lg-8 col-xl-7">
+            <section class="checkout-card p-4 p-md-5" aria-labelledby="checkout-title">
+                <p class="eyebrow text-accent">{% trans "Almost done" %}</p>
+                <h1 id="checkout-title" class="account-heading mb-4">{% trans "Checkout" %}</h1>
+                <div class="checkout-summary mb-4 d-flex flex-column flex-sm-row justify-content-between gap-2">
+                    <div><div class="checkout-summary__name">{{ product.name }}</div>{% if product.author %}<div class="text-secondary small">{{ product.author }}</div>{% endif %}</div>
+                    <div class="checkout-total">{{ product.selling_price|localize }} {% trans "UZS" %}</div>
                 </div>
-            </div>
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}<div class="form-errors mb-3" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                            {% for error in field.errors %}<div class="field-error mt-1" role="alert">{{ error }}</div>{% endfor %}
+                        </div>
+                    {% endfor %}
+                    <p class="small text-secondary">{% trans "Online payment is not available yet. Your order will be saved for follow-up." %}</p>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">{% trans "Place order" %}</button>
+                </form>
+            </section>
         </div>
     </div>
 </div>

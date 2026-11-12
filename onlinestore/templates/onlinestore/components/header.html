@@ -1,58 +1,54 @@
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="{% url 'onlinestore:base' %}">admin</a>
-            <!-- Sidebar Toggle-->
-             <a href="{% url 'onlinestore:product_list' %}"
-                class="btn btn-primary ms-2">
-                    <i class="fas fa-store me-1"></i>
-                    Каталог товаров
-            </a>
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a class="dropdown-item"
-                            href="{% url 'onlinestore:profile' %}">
-                                <i class="fas fa-user me-2"></i> Профиль
-                            </a>
-                        </li>
-
-                        <li><hr class="dropdown-divider"></li>
-                        <li class="nav-item">
-                            <form action="{% url 'onlinestore:logout' %}" method="post">
-                                {% csrf_token %}
-                                <button type="submit" class="nav-link btn btn-link text-dark">
-                                    <i class="fas fa-sign-out-alt"></i> Выйти
-                                </button>
-                            </form>
-                        </li>
-
-                    {% else %}
-                        <!-- Пользователь не вошёл -->
-                        <li class="nav-item text-dark">
-                            <a class="nav-link text-dark" href="{% url 'onlinestore:sign-in' %}">
-                                <i class="fas fa-sign-in-alt"></i> Войти
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="{% url 'onlinestore:register' %}">
-                                <i class="fas fa-user-plus"></i> Создать профиль
-                            </a>
-                        </li>
-                    {% endif %}
-                    </ul>
+{% load i18n %}
+<a class="skip-link" href="#main-content">{% trans "Skip to main content" %}</a>
+<header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-light container" aria-label="{% trans 'Main navigation' %}">
+        <a class="navbar-brand brand-mark" href="{% url 'onlinestore:product_list' %}">
+            <span class="brand-mark__icon" aria-hidden="true">S</span>
+            {% trans "Online Store" %}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#storeNavigation" aria-controls="storeNavigation" aria-expanded="false" aria-label="{% trans 'Open menu' %}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="storeNavigation">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                <li class="nav-item"><a class="nav-link" href="{% url 'onlinestore:product_list' %}">{% trans "Catalog" %}</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'onlinestore:profile' %}">{% trans "My account" %}</a></li>
+                    <li class="nav-item">
+                        <form action="{% url 'onlinestore:logout' %}" method="post" class="m-0">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-secondary btn-sm ms-lg-2">{% trans "Sign out" %}</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'onlinestore:sign-in' %}">{% trans "Sign in" %}</a></li>
+                    <li class="nav-item"><a class="btn btn-primary btn-sm ms-lg-2" href="{% url 'onlinestore:register' %}">{% trans "Create account" %}</a></li>
+                {% endif %}
+                <li class="nav-item">
+                    <form action="{% url 'set_language' %}" method="post" class="language-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <label class="visually-hidden" for="site-language">{% trans "Language" %}</label>
+                        <select class="form-select form-select-sm" name="language" id="site-language" aria-label="{% trans 'Language' %}">
+                            {% for code, name in LANGUAGES %}
+                                <option value="{{ code }}"{% if code == LANGUAGE_CODE %} selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-outline-secondary btn-sm">{% trans "Apply" %}</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"
+                            data-dark-label="{% trans 'Switch to dark mode' %}"
+                            data-light-label="{% trans 'Switch to light mode' %}"
+                            data-dark-text="{% trans 'Dark mode' %}"
+                            data-light-text="{% trans 'Light mode' %}"
+                            aria-label="{% trans 'Switch to dark mode' %}">
+                        <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+                        <span class="theme-toggle__text">{% trans "Dark mode" %}</span>
+                    </button>
                 </li>
             </ul>
-        </nav>
+        </div>
+    </nav>
+</header>

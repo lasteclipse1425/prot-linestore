@@ -99,6 +99,7 @@ urlpatterns = [
         views.product_detail,
         name="product_detail"
     ),
+    path('product/<int:product_id>/download/', views.download_product_pdf, name='download_product_pdf'),
     
     # Страница и процесс создания заказа
     path(

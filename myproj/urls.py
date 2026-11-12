@@ -5,6 +5,7 @@ from django.conf.urls.static import static
  
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('', include(('onlinestore.urls', 'onlinestore'), namespace='main')),
     path('base/', include(('onlinestore.urls', 'onlinestore'), namespace='base')),    #path('accounts/', include('django.contrib.auth.urls'))
 ]
