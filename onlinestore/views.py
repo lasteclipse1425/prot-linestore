@@ -1,5 +1,6 @@
 
 from django.contrib import messages
+from django.http import Http404
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -176,7 +177,7 @@ def order_created(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     if order.user_id:
         if not request.user.is_authenticated or order.user_id != request.user.id:
-            return get_object_or_404(Order, pk=None)
+            raise Http404
     elif request.session.get('last_order_id') != order.id:
         return get_object_or_404(Order, pk=None)
     return render(request, template_name='onlinestore/order/created.html', context={'order': order})
