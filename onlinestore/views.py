@@ -132,10 +132,7 @@ def product_detail(request, slug):
 def order_create(request, product_slug=None):
     product = get_object_or_404(Product, slug=product_slug) if product_slug else None
 
-    """
-    ??????? ?????. ??? ???????? ??????????????? ?????????? ??????
-    ?? ???? ?????????? ????? (?????????? ????? GET/POST) ??? ?? ??????.
-    """
+    """Create an order for the selected product, if one was provided."""
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
 
@@ -149,7 +146,7 @@ def order_create(request, product_slug=None):
             order.quantity = quantity
 
             if product is not None and product.is_pdf() and product.pdf_price is None:
-                messages.error(request, '???? PDF-?????? ?? ???????.')
+                messages.error(request, 'Для PDF-версии не указана цена.')
                 return redirect('onlinestore:product_detail', slug=product.slug)
 
             order.save()
@@ -179,5 +176,5 @@ def order_created(request, order_id):
         if not request.user.is_authenticated or order.user_id != request.user.id:
             raise Http404
     elif request.session.get('last_order_id') != order.id:
-        return get_object_or_404(Order, pk=None)
+        raise Http404
     return render(request, template_name='onlinestore/order/created.html', context={'order': order})
