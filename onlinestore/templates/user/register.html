@@ -50,9 +50,11 @@
                                                         name="first_name"
                                                         placeholder="Имя"
                                                         value="{{ request.POST.first_name|default:'' }}"
-                                                        required
                                                     />
                                                     <label for="inputFirstName">Имя</label>
+                                                    {% for error in form.first_name.errors %}
+                                                        <div class="text-danger small" role="alert">{{ error }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
 
@@ -65,9 +67,11 @@
                                                         name="last_name"
                                                         placeholder="Фамилия"
                                                         value="{{ request.POST.last_name|default:'' }}"
-                                                        required
                                                     />
                                                     <label for="inputLastName">Фамилия</label>
+                                                    {% for error in form.last_name.errors %}
+                                                        <div class="text-danger small" role="alert">{{ error }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         </div>
@@ -83,6 +87,9 @@
                                                 required
                                             />
                                             <label for="inputUsername">Логин</label>
+                                            {% for error in form.username.errors %}
+                                                <div class="text-danger small" role="alert">{{ error }}</div>
+                                            {% endfor %}
                                         </div>
 
                                         <div class="form-floating mb-3">
@@ -96,6 +103,9 @@
                                                 required
                                             />
                                             <label for="inputEmail">Email</label>
+                                            {% for error in form.email.errors %}
+                                                <div class="text-danger small" role="alert">{{ error }}</div>
+                                            {% endfor %}
                                         </div>
 
                                         <div class="row mb-3">
@@ -110,6 +120,9 @@
                                                         required
                                                     />
                                                     <label for="inputPassword">Пароль</label>
+                                                    {% for error in form.password1.errors %}
+                                                        <div class="text-danger small" role="alert">{{ error }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
 
@@ -126,6 +139,9 @@
                                                     <label for="inputPasswordConfirm">
                                                         Повторите пароль
                                                     </label>
+                                                    {% for error in form.password2.errors %}
+                                                        <div class="text-danger small" role="alert">{{ error }}</div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         </div>
@@ -138,14 +154,8 @@
                                             {% endfor %}
                                         {% endif %}
 
-                                        {% if form.errors %}
+                                        {% if form.non_field_errors %}
                                             <div class="alert alert-danger" role="alert">
-                                                {% for field in form %}
-                                                    {% for error in field.errors %}
-                                                        <p>{{ error }}</p>
-                                                    {% endfor %}
-                                                {% endfor %}
-
                                                 {% for error in form.non_field_errors %}
                                                     <p>{{ error }}</p>
                                                 {% endfor %}

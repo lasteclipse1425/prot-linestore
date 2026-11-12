@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import auth_views, views
 from .views import (
     ProductDetailAPIView,
     ProductListCreateAPIView,
@@ -59,8 +59,13 @@ urlpatterns = [
 
      path(
          'sign_in/', 
-          views.sign_in, 
+           auth_views.sign_in,
           name='sign-in'
+    ),
+    path(
+         'sign-in/',
+          auth_views.sign_in,
+          name='sign_in_alias'
     ),
      path(
          'profile/', 
@@ -69,8 +74,13 @@ urlpatterns = [
     ),
     path(
         'register/',
-        views.register,
+        auth_views.register,
         name='register'
+    ),
+    path(
+        'api/register/',
+        auth_views.register_api,
+        name='register_api'
     ),
 
     # Главная страница магазина (список всех активных товаров)

@@ -1,11 +1,6 @@
-from django.db import models
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from django.conf import settings
+from django.db import models
 
-
-User = get_user_model()
-        
 
 class Review(models.Model):
     # Оценки от 1 до 5
@@ -18,7 +13,7 @@ class Review(models.Model):
     )
 
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='reviews', verbose_name='Товар')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор')
     text = models.TextField(verbose_name='Текст отзыва')
     rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES, default=5, verbose_name='Оценка')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -168,7 +163,7 @@ class Order(models.Model):
         CANCELED = "canceled", "Отменен"
 
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         related_name="orders",
         on_delete=models.CASCADE,
         verbose_name="Покупатель",

@@ -38,38 +38,37 @@
                                           method="post">
 
                                         {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{ next }}">
 
                                         <div class="form-floating mb-3">
-                                            <input
-                                                class="form-control"
-                                                id="inputUsername"
-                                                type="text"
-                                                name="username"
-                                                placeholder="Логин"
-                                                required
-                                            />
+                                            {{ form.username }}
                                             <label for="inputUsername">
                                                 Логин
                                             </label>
+                                            {% for error in form.username.errors %}
+                                                <div class="text-danger small" role="alert">{{ error }}</div>
+                                            {% endfor %}
                                         </div>
 
                                         <div class="form-floating mb-3">
-                                            <input
-                                                class="form-control"
-                                                id="inputPassword"
-                                                type="password"
-                                                name="password"
-                                                placeholder="Пароль"
-                                                required
-                                            />
+                                            {{ form.password }}
                                             <label for="inputPassword">
                                                 Пароль
                                             </label>
+                                            {% for error in form.password.errors %}
+                                                <div class="text-danger small" role="alert">{{ error }}</div>
+                                            {% endfor %}
                                         </div>
+
+                                        {% if form.non_field_errors %}
+                                            <div class="alert alert-danger" role="alert">
+                                                {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+                                            </div>
+                                        {% endif %}
 
                                         {% if messages %}
                                             {% for message in messages %}
-                                                <div class="alert alert-danger" role="alert">
+                                                <div class="alert alert-{{ message.tags|default:'info' }}" role="alert">
                                                     {{ message }}
                                                 </div>
                                             {% endfor %}
@@ -89,6 +88,8 @@
                                 <div class="card-footer text-center py-3">
                                     <div class="small">
                                         Введите логин и пароль для входа в аккаунт.
+                                        Нет аккаунта?
+                                        <a href="{% url 'onlinestore:register' %}">Зарегистрироваться</a>
                                     </div>
                                 </div>
 

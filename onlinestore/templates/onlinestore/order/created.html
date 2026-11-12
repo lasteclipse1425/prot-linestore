@@ -1,0 +1,27 @@
+{% extends "onlinestore/components/base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <h1 class="mb-3 text-success">Заказ оформлен</h1>
+                    <p class="lead mb-4">Спасибо! Ваш заказ №{{ order.id }} успешно создан.</p>
+
+                    <div class="text-start mx-auto" style="max-width: 420px;">
+                        <p><strong>Покупатель:</strong> {{ order.first_name }} {{ order.last_name }}</p>
+                        <p><strong>Email:</strong> {{ order.email }}</p>
+                        <p><strong>Адрес:</strong> {{ order.address }}</p>
+                        <p><strong>Сумма:</strong> {{ order.total_price }} сум</p>
+                    </div>
+
+                    <a href="{% url 'onlinestore:product_list' %}" class="btn btn-primary mt-3">
+                        Вернуться в магазин
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
