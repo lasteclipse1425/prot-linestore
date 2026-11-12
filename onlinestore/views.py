@@ -144,14 +144,14 @@ def order_create(request, product_slug=None):
                 order.product = product
             if request.user.is_authenticated:
                 order.user = request.user
-            order.save()
-
-            quantity = int(request.POST.get('quantity', 1))
+            quantity = form.cleaned_data['quantity']
             order.quantity = quantity
 
             if product is not None and product.is_pdf() and product.pdf_price is None:
                 messages.error(request, '???? PDF-?????? ?? ???????.')
                 return redirect('onlinestore:product_detail', slug=product.slug)
+
+            order.save()
 
             if product is not None:
                 order_item = OrderItem.objects.create(
@@ -163,6 +163,7 @@ def order_create(request, product_slug=None):
                 order.total_price = order_item.get_cost()
                 order.save()
 
+            request.session['last_order_id'] = order.id
             return redirect('onlinestore:order_created', order_id=order.id)
     else:
         form = OrderCreateForm(initial={'quantity': 1})
@@ -173,4 +174,9 @@ def order_create(request, product_slug=None):
 
 def order_created(request, order_id):
     order = get_object_or_404(Order, id=order_id)
+    if order.user_id:
+        if not request.user.is_authenticated or order.user_id != request.user.id:
+            return get_object_or_404(Order, pk=None)
+    elif request.session.get('last_order_id') != order.id:
+        return get_object_or_404(Order, pk=None)
     return render(request, template_name='onlinestore/order/created.html', context={'order': order})
