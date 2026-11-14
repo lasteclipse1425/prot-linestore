@@ -161,6 +161,30 @@ class StoreSecurityAndOrderTests(TestCase):
         self.assertEqual(response.context['page_obj'].number, 2)
         self.assertContains(response, 'q=item&amp;sort=price_asc&amp;page=1')
 
+    def test_catalog_uses_database_products_and_links_to_detail_and_order(self):
+        response = self.client.get('/', {'q': 'Django'})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'href="/product/django/"')
+        self.assertContains(response, 'href="/order/create/django/"')
+        self.assertContains(response, 'name="q"')
+        self.assertContains(response, 'name="sort"')
+        self.assertContains(response, 'product-availability--in')
+        self.assertNotContains(response, 'Cloud Ceramic Vase')
+        self.assertNotContains(response, 'Shopping bag')
+
+        category_response = self.client.get('/category/books/', {'q': 'Django', 'sort': 'price_asc'})
+        self.assertEqual(category_response.status_code, 200)
+        self.assertContains(category_response, 'href="/category/books/?q=Django&amp;sort=price_asc"')
+
+    def test_catalog_empty_state_keeps_search_and_category_filters_usable(self):
+        response = self.client.get('/', {'q': 'not-a-real-product'})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'empty-state')
+        self.assertContains(response, 'Очистить поиск')
+        self.assertContains(response, 'value="not-a-real-product"')
+
     def test_legacy_home_route_leads_to_catalog(self):
         response = self.client.get('/base/')
         self.assertRedirects(response, '/')

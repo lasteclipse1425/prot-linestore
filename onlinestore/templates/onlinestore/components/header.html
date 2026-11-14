@@ -3,15 +3,34 @@
 <header class="site-header">
     <nav class="navbar navbar-expand-lg navbar-light container" aria-label="{% trans 'Main navigation' %}">
         <a class="navbar-brand brand-mark" href="{% url 'onlinestore:product_list' %}">
-            <span class="brand-mark__icon" aria-hidden="true">S</span>
-            {% trans "Online Store" %}
+            <span class="brand-mark__icon" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false"><path d="M5 22c0-7 5-12 12-12h9v9c0 7-5 12-12 12H5z"/><path d="M10 22 22 10M13 25l12-12"/></svg></span>
+            daykind
         </a>
+        <div class="header-tools">
+            <form action="{% url 'set_language' %}" method="post" class="language-form" data-language-form>
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <label class="visually-hidden" for="site-language">{% trans "Language" %}</label>
+                <select class="form-select form-select-sm" name="language" id="site-language" aria-label="{% trans 'Language' %}">
+                    {% for code, name in LANGUAGES %}<option value="{{ code }}"{% if code == LANGUAGE_CODE %} selected{% endif %}>{{ name }}</option>{% endfor %}
+                </select>
+            </form>
+            <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"
+                    data-dark-label="{% trans 'Switch to dark mode' %}"
+                    data-light-label="{% trans 'Switch to light mode' %}"
+                    data-dark-text="{% trans 'Dark mode' %}"
+                    data-light-text="{% trans 'Light mode' %}"
+                    aria-label="{% trans 'Switch to dark mode' %}">
+                <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+                <span class="theme-toggle__text">{% trans "Dark mode" %}</span>
+            </button>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#storeNavigation" aria-controls="storeNavigation" aria-expanded="false" aria-label="{% trans 'Open menu' %}">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="storeNavigation">
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                <li class="nav-item"><a class="nav-link" href="{% url 'onlinestore:product_list' %}">{% trans "Catalog" %}</a></li>
+            <ul class="navbar-nav align-items-lg-center gap-lg-2">
+                <li class="nav-item"><a class="nav-link" href="{% url 'onlinestore:product_list' %}#shop">{% trans "Shop" %}</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'onlinestore:profile' %}">{% trans "My account" %}</a></li>
                     <li class="nav-item">
@@ -24,30 +43,6 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'onlinestore:sign-in' %}">{% trans "Sign in" %}</a></li>
                     <li class="nav-item"><a class="btn btn-primary btn-sm ms-lg-2" href="{% url 'onlinestore:register' %}">{% trans "Create account" %}</a></li>
                 {% endif %}
-                <li class="nav-item">
-                    <form action="{% url 'set_language' %}" method="post" class="language-form">
-                        {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                        <label class="visually-hidden" for="site-language">{% trans "Language" %}</label>
-                        <select class="form-select form-select-sm" name="language" id="site-language" aria-label="{% trans 'Language' %}">
-                            {% for code, name in LANGUAGES %}
-                                <option value="{{ code }}"{% if code == LANGUAGE_CODE %} selected{% endif %}>{{ name }}</option>
-                            {% endfor %}
-                        </select>
-                        <button type="submit" class="btn btn-outline-secondary btn-sm">{% trans "Apply" %}</button>
-                    </form>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false"
-                            data-dark-label="{% trans 'Switch to dark mode' %}"
-                            data-light-label="{% trans 'Switch to light mode' %}"
-                            data-dark-text="{% trans 'Dark mode' %}"
-                            data-light-text="{% trans 'Light mode' %}"
-                            aria-label="{% trans 'Switch to dark mode' %}">
-                        <span class="theme-toggle__icon" aria-hidden="true">☾</span>
-                        <span class="theme-toggle__text">{% trans "Dark mode" %}</span>
-                    </button>
-                </li>
             </ul>
         </div>
     </nav>

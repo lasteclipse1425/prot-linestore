@@ -1,102 +1,117 @@
 {% extends 'onlinestore/components/base.html' %}
 {% load i18n l10n %}
-{% block title %}{% if category %}{{ category.name }}{% else %}{% trans 'Catalog' %}{% endif %}{% endblock %}
+
+{% block title %}{% if category %}{{ category.name }}{% else %}{% trans "All products" %}{% endif %}{% endblock %}
+
 {% block content %}
-<section class="store-hero store-hero--catalog">
-    <div class="container store-hero__inner">
-        <p class="eyebrow">{% trans "Online Store · Catalog" %}</p>
-        <h1>{% trans "Find what you need." %}</h1>
-        <p class="store-hero__text">{% trans "Explore useful products for work, home, and everything in between." %}</p>
-        <a href="#product-catalog" class="btn btn-light">{% trans "Browse products" %}</a>
+<div class="announcement">{% trans "Useful finds for everyday life." %}</div>
+
+<section class="editorial-hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+        <p class="hero-kicker"><span aria-hidden="true"></span>{% trans "Product selection" %}</p>
+        <h1 id="hero-title">{% trans "Everyday essentials, selected for you." %}</h1>
+        <p>{% trans "Explore useful products for work, home, and everything in between." %}</p>
+        <a class="shop-cta" href="#shop">{% trans "Browse products" %}<span aria-hidden="true">↘</span></a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+        <span class="hero-art__orbit"></span>
+        <span class="hero-art__label">daykind</span>
+        <span class="hero-art__caption">✳</span>
     </div>
 </section>
 
-<section class="container py-5" id="product-catalog" aria-labelledby="catalog-heading">
-    <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+<section class="shop-section" id="shop" aria-labelledby="shop-title">
+    <div class="shop-heading">
         <div>
-            <p class="eyebrow text-accent mb-2">{% trans "Product selection" %}</p>
-            <h2 id="catalog-heading" class="mb-1">{% if category %}{{ category.name }}{% else %}{% trans "All products" %}{% endif %}</h2>
-            <p class="text-secondary mb-0">{% trans "Browse the available items in our store." %}</p>
+            <p class="section-kicker">{% trans "Product selection" %}</p>
+            <h2 id="shop-title">{% if category %}{{ category.name }}{% else %}{% trans "All products" %}{% endif %}</h2>
         </div>
-        {% if categories %}
-            <nav class="category-list" aria-label="{% trans 'Product categories' %}">
-                <a class="category-chip{% if not category %} is-active{% endif %}" href="{% url 'onlinestore:product_list' %}">{% trans "All products" %}</a>
-                {% for item in categories %}
-                    <a class="category-chip{% if category and item.pk == category.pk %} is-active{% endif %}" href="{% url 'onlinestore:product_list_by_category' item.slug %}">{{ item.name }}</a>
-                {% endfor %}
-            </nav>
-        {% endif %}
+        <form class="catalog-controls" method="get" action="{% if category %}{% url 'onlinestore:product_list_by_category' category_slug=category.slug %}{% else %}{% url 'onlinestore:product_list' %}{% endif %}">
+            <div class="catalog-search">
+                <label for="shop-search">{% trans "Search products" %}</label>
+                <input id="shop-search" class="form-control" type="search" name="q" value="{{ query }}" maxlength="100" placeholder="{% trans 'Search the catalog' %}">
+            </div>
+            <div class="catalog-sort">
+                <label for="catalog-sort">{% trans "Sort by" %}</label>
+                <select id="catalog-sort" class="form-select" name="sort">
+                    <option value="newest"{% if sort == 'newest' %} selected{% endif %}>{% trans "Newest first" %}</option>
+                    <option value="price_asc"{% if sort == 'price_asc' %} selected{% endif %}>{% trans "Price: low to high" %}</option>
+                    <option value="price_desc"{% if sort == 'price_desc' %} selected{% endif %}>{% trans "Price: high to low" %}</option>
+                </select>
+            </div>
+            <button class="btn btn-primary catalog-submit" type="submit">{% trans "Apply filters" %}</button>
+        </form>
     </div>
 
-    {% if category %}
-        {% url 'onlinestore:product_list_by_category' category.slug as catalog_url %}
-    {% else %}
-        {% url 'onlinestore:product_list' as catalog_url %}
-    {% endif %}
-    <form action="{{ catalog_url }}" method="get" class="catalog-controls mt-4" role="search">
-        <div class="catalog-search">
-            <label class="visually-hidden" for="product-search">{% trans "Search products" %}</label>
-            <input class="form-control" type="search" id="product-search" name="q" value="{{ query }}" placeholder="{% trans 'Search the catalog' %}">
-        </div>
-        <div class="catalog-sort">
-            <label class="form-label mb-0" for="product-sort">{% trans "Sort by" %}</label>
-            <select class="form-select" id="product-sort" name="sort">
-                <option value="newest"{% if sort == 'newest' %} selected{% endif %}>{% trans "Newest first" %}</option>
-                <option value="price_asc"{% if sort == 'price_asc' %} selected{% endif %}>{% trans "Price: low to high" %}</option>
-                <option value="price_desc"{% if sort == 'price_desc' %} selected{% endif %}>{% trans "Price: high to low" %}</option>
-            </select>
-        </div>
-        <button class="btn btn-primary" type="submit">{% trans "Apply filters" %}</button>
-    </form>
+    <nav class="filter-row" aria-label="{% trans 'Product categories' %}">
+        <a class="filter-chip{% if not category %} active{% endif %}" href="{% url 'onlinestore:product_list' %}?q={{ query|urlencode }}&amp;sort={{ sort|urlencode }}"{% if not category %} aria-current="page"{% endif %}>{% trans "All products" %}</a>
+        {% for item in categories %}
+            <a class="filter-chip{% if category.pk == item.pk %} active{% endif %}" href="{% url 'onlinestore:product_list_by_category' category_slug=item.slug %}?q={{ query|urlencode }}&amp;sort={{ sort|urlencode }}"{% if category.pk == item.pk %} aria-current="page"{% endif %}>{{ item.name }}</a>
+        {% endfor %}
+    </nav>
 
-    <div class="row g-4 mt-2">
-        {% for product in products %}
-            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="product-card h-100">
-                    <a class="product-card__image" href="{% url 'onlinestore:product_detail' product.slug %}" aria-label="{% blocktrans with product_name=product.name %}View details for {{ product_name }}{% endblocktrans %}">
-                        {% if product.image %}
-                            <img src="{{ product.image.url }}" alt="{% blocktrans with product_name=product.name %}Image of {{ product_name }}{% endblocktrans %}" loading="lazy">
-                        {% else %}
-                            <span class="product-card__placeholder" aria-hidden="true">{% trans "Product" %}</span>
-                        {% endif %}
-                    </a>
-                    <div class="product-card__body">
-                        <p class="product-card__category">{{ product.category.name }}</p>
-                        <h3 class="product-card__title"><a href="{% url 'onlinestore:product_detail' product.slug %}">{{ product.name }}</a></h3>
-                        {% if product.author %}<p class="product-card__meta">{{ product.author }}</p>{% endif %}
-                        <div class="product-card__bottom">
-                            <strong class="product-card__price">{{ product.selling_price|localize }} <span>{% trans "UZS" %}</span></strong>
-                            <a class="btn btn-outline-primary btn-sm" href="{% url 'onlinestore:product_detail' product.slug %}">{% trans "View details" %}</a>
+    <p class="result-count" aria-live="polite">
+        {% blocktrans count total=page_obj.paginator.count %}{{ total }} product{% plural %}{{ total }} products{% endblocktrans %}
+        {% if query %}<span> · {{ query }}</span>{% endif %}
+    </p>
+
+    {% if products %}
+        <div class="shop-grid">
+            {% for product in products %}
+                <article class="shop-card">
+                    <div class="product-photo">
+                        <a class="real-product-image" href="{% url 'onlinestore:product_detail' product.slug %}" aria-label="{% blocktrans with product_name=product.name %}View details for {{ product_name }}{% endblocktrans %}">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{% blocktrans with product_name=product.name %}Image of {{ product_name }}{% endblocktrans %}" loading="lazy">
+                            {% else %}
+                                <span class="real-product-placeholder" aria-hidden="true">daykind</span>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-copy">
+                            <span class="maker">{{ product.category.name }}</span>
+                            <h3><a href="{% url 'onlinestore:product_detail' product.slug %}">{{ product.name }}</a></h3>
+                            {% if product.author %}<p class="product-author">{{ product.author }}</p>{% endif %}
                         </div>
+                        <strong>{{ product.selling_price|localize }} <small>{% trans "UZS" %}</small></strong>
+                    </div>
+                    <div class="product-actions">
+                        {% if product.is_pdf and product.pdf_price is not None or not product.is_pdf and product.stock > 0 %}
+                            <span class="product-availability product-availability--in">{% trans "Available to order" %}</span>
+                            <a href="{% url 'onlinestore:order_create_product' product.slug %}" class="product-order-link">{% trans "Order now" %}</a>
+                        {% else %}
+                            <span class="product-availability">{% trans "Currently unavailable" %}</span>
+                            <a href="{% url 'onlinestore:product_detail' product.slug %}" class="product-details-link">{% trans "Details" %} ↗</a>
+                        {% endif %}
                     </div>
                 </article>
-            </div>
-        {% empty %}
-            <div class="col-12">
-                <div class="empty-state">
-                    <span class="empty-state__icon" aria-hidden="true">⌕</span>
-                    {% if query %}
-                        <h3>{% trans "No products matched your search." %}</h3>
-                        <p>{% trans "Try a different search term or clear the search." %}</p>
-                        <a href="{{ catalog_url }}" class="btn btn-outline-primary">{% trans "Clear search" %}</a>
-                    {% else %}
-                        <h3>{% trans "No products here yet" %}</h3>
-                        <p>{% trans "Try browsing the full catalog instead." %}</p>
-                        <a href="{% url 'onlinestore:product_list' %}" class="btn btn-primary">{% trans "All products" %}</a>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state" role="status">
+            <span class="empty-state__icon" aria-hidden="true">✳</span>
+            <h3>{% if query %}{% trans "No products matched your search." %}{% else %}{% trans "No products here yet" %}{% endif %}</h3>
+            <p>{% if query %}{% trans "Try a different search term or clear the search." %}{% else %}{% trans "Try browsing the full catalog instead." %}{% endif %}</p>
+            {% if query %}
+                <a class="btn btn-outline-primary" href="{% if category %}{% url 'onlinestore:product_list_by_category' category_slug=category.slug %}?sort={{ sort|urlencode }}{% else %}{% url 'onlinestore:product_list' %}?sort={{ sort|urlencode }}{% endif %}">{% trans "Clear search" %}</a>
+            {% else %}
+                <a class="btn btn-outline-primary" href="{% url 'onlinestore:product_list' %}">{% trans "Back to catalog" %}</a>
+            {% endif %}
+        </div>
+    {% endif %}
+
     {% if page_obj.paginator.num_pages > 1 %}
-        <nav class="catalog-pagination mt-5" aria-label="{% trans 'Catalog pages' %}">
+        <nav class="catalog-pagination mt-4" aria-label="{% trans 'Catalog pages' %}">
             {% if page_obj.has_previous %}
                 <a class="btn btn-outline-secondary" href="?q={{ query|urlencode }}&amp;sort={{ sort|urlencode }}&amp;page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
-            {% else %}<span></span>{% endif %}
+            {% else %}
+                <span></span>
+            {% endif %}
             <span class="pagination-status">{% blocktrans with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}{% endblocktrans %}</span>
             {% if page_obj.has_next %}
                 <a class="btn btn-outline-secondary" href="?q={{ query|urlencode }}&amp;sort={{ sort|urlencode }}&amp;page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
-            {% else %}<span></span>{% endif %}
+            {% endif %}
         </nav>
     {% endif %}
 </section>

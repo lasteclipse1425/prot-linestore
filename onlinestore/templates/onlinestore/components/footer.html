@@ -1,6 +1,7 @@
 {% load i18n %}
 <footer class="site-footer">
     <div class="container d-flex flex-column flex-sm-row justify-content-between gap-2">
+        <a class="footer-brand footer-brand--site" href="{% url 'onlinestore:product_list' %}"><span class="footer-brand-mark">dk</span> daykind</a>
         <span>© {% now 'Y' %} {% trans "Online Store" %}</span>
         <a href="{% url 'onlinestore:product_list' %}">{% trans "Back to catalog" %}</a>
     </div>
